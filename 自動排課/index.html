@@ -1,22 +1,24 @@
 <!DOCTYPE html>
 <html>
-    <head>
-        <meta charset="utf-8">
-        <title>Club Course</title>
-        <link rel="stylesheet" href="style.css">
-    </head>
-    <body>
-        <h1>社團課程時間表</h1>
-        <table id="courseTable"></table>
-        <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-        <script src="topic.js"></script>
-        <script src="main.js"></script>
-        <form name='form' id='form'>
-            月份：
-            <input type='text' name='month' id='month' /> 
-            日期：
-            <input type='text' name='date' id='date' />
-            <input type='button' value='送出' data-action="submit"/>
-          </form>
-    </body>
+
+<head>
+    <meta charset="utf-8">
+    <title>Club Course</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+    <h1>社團課程時間表</h1>
+    <table id="courseTable"></table>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    月份：
+    <input type='number' name='month' id='month' />
+    日期：
+    <input type='number' name='date' id='date' />
+    <!-- <input type='button' value='送出' data-action="submit"/> -->
+    <button onclick="setMonthAndDay(document.getElementById('month').value,document.getElementById('date').value)">submit</button>
+    <script src="topic.js"></script>
+    <script src="main.js"></script>
+</body>
+
 </html>
