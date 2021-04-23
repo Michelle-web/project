@@ -8,4 +8,8 @@ table{
 }
 td{
     border-bottom: 1px solid blue;
+    background-color: white;
+}
+.selected{
+    background-color: grey;
 }

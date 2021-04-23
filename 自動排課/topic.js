@@ -8,16 +8,18 @@ var topic = [
 ];
 var startDate = new Date();
 function setMonthAndDay(month, date) {
-  alert(parseInt(month, 10) + parseInt(date, 10));
-  startDate.setDate(parseInt(date, 10));
-  startDate.setMonth(parseInt(month, 10));
+  startDate.setMonth(month-1,date);
   startDate.setHours(0);
   startDate.setMinutes(0);
   startDate.setSeconds(0);
+  Obj();
 }
 /* function add(a, b) {
   var sum = parseInt(a, 10) + parseInt(b, 10);
   alert(sum);
 }
-  setMonthAndDay(month, date); 
+}
+function add(month, date) {
+  alert(month);
+
 }*/
