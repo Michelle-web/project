@@ -1,5 +1,4 @@
 function Obj() {
-$(function () {
     $("#courseTable").append("<tr><th>場次</th><th>時間</th><th>主題</th></tr>");
     var topicCount = topic.length;
     //一秒鐘有1000毫秒
@@ -17,6 +16,10 @@ $(function () {
         if(topic[x]=="國定假日")$('td').addClass('selected');
         $("#courseTable").append("</tr>");
     }
-   
-});
 }
+$(document).ready(function(){ 
+    $('#button1').click(function(){ 
+      $("#courseTable").find("td").remove();
+      $("#courseTable").find("tr").remove();
+    });
+  });
