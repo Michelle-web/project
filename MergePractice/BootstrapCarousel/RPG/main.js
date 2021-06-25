@@ -9,7 +9,7 @@ $(function () {
     ];
     ctx = $("#myCanvas")[0].getContext("2d");
     imgMain = new Image();
-    imgMain.src = "images/spriteSheet.png";
+    imgMain.src = "RPG/images/spriteSheet.png";
     currentImgMain = {
         "x": 0,
         "y": 0
@@ -18,9 +18,9 @@ $(function () {
         ctx.drawImage(imgMain, 0, 0, 80, 130, currentImgMain.x, currentImgMain.y, gridLength, gridLength);
     }
     imgMountain = new Image();
-    imgMountain.src = "images/material.png";
+    imgMountain.src = "RPG/images/material.png";
     imgEnemy = new Image();
-    imgEnemy.src = "images/Enemy.png";
+    imgEnemy.src = "RPG/images/Enemy.png";
     imgMountain.onload = function () {
         imgEnemy.onload = function () {
             for (var x in mapArray) {
@@ -49,7 +49,7 @@ $(document).on("keydown", function (event) {
     event.preventDefault();
     //避免鍵盤預設行為發生，如捲動/放大/換頁...
     //判斷使用者按下什麼並推算目標座標
-    switch (event.code) {
+    switch (event.key) {
         case "ArrowLeft":
             targetImg.x = currentImgMain.x - gridLength;
             targetImg.y = currentImgMain.y;
