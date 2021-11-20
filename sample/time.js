@@ -15,4 +15,5 @@ function Time() {
     time.minute=today.getMinutes();
     time.second=today.getSeconds();
     document.getElementById("time").innerHTML =today.toLocaleString();
+    setTimeout('Time()',100);
 }
