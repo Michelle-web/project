@@ -19,7 +19,7 @@
 
     <header>
       <nav class="navbar navbar-expand-md navbar-dark fixed-top bg-dark">
-        <a class="navbar-brand" href="#">Carousel</a>
+        <a class="navbar-brand" href="#">Elle</a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
           <span class="navbar-toggler-icon"></span>
         </button>
@@ -32,18 +32,15 @@
               <a class="nav-link" href="mindquiz.html">mindquiz</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="simple rpg.html">rpg</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="yt.html">youtube</a>
+              <a class="nav-link" href="sample.html">sample</a>
             </li>
             <li class="nav-item">
               <a class="nav-link disabled" href="#">Private</a>
             </li>
           </ul>
-          <form class="form-inline mt-2 mt-md-0">
-            <input class="form-control mr-sm-2" type="text" placeholder="Search" aria-label="Search">
-            <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+          <form class="form-inline mt-2 mt-md-0" name="myForm">
+            <input class="form-control mr-sm-2" type="text" placeholder="Plz enter your name" name="myText" aria-label="Search">
+            <button type="submit" onClick="myFun()">submit</button>
           </form>
         </div>
       </nav>
@@ -69,22 +66,22 @@
             </div>
           </div>
           <div class="carousel-item">
-            <img class="second-slide" src="1606002488_32.jpg" alt="Second slide">
+            <img class="second-slide" src="618.jpg" alt="Second slide">
             <div class="container">
               <div class="carousel-caption">
-                <h1>Game.</h1>
-                <p>Place to have some fun.</p>
-                <p><a class="btn btn-lg btn-primary" href="simple rpg.html" role="button">Game</a></p>
+                <h1>Sample.</h1>
+                <p>.</p>
+                <p><a class="btn btn-lg btn-primary" href="sample.html" role="button">Sample</a></p>
               </div>
             </div>
           </div>
           <div class="carousel-item">
-            <img class="third-slide" src="618.jpg" alt="Third slide">
+            <img class="third-slide" src="1606002488_32.jpg" alt="Third slide">
             <div class="container">
               <div class="carousel-caption text-right">
-                <h1>Lovely Music.</h1>
-                <p>Place to relax.</p>
-                <p><a class="btn btn-lg btn-primary" href="yt.html" role="button">Lovely Music</a></p>
+                <h1>Home.</h1>
+                <p>Hello again.</p>
+                <p><a class="btn btn-lg btn-primary" href="index.html" role="button">Home</a></p>
               </div>
             </div>
           </div>
@@ -107,7 +104,14 @@
       <div class="container marketing">
         <div class="row featurette">
           <div class="col-md-7">
-            <h2 class="featurette-heading">First featurette heading. <span class="text-muted">It'll blow your mind.</span></h2>
+            <h2 class="featurette-heading" >Hello <span id="np"></span><span class="text-muted">nice to meet ya.</span></h2>
+            <script type="text/javascript">
+              function myFun(){
+               var myTxt = document.myForm.myText;
+               document.getElementById("np").textContent = myTxt;
+              }
+             </script>
+             
             <p class="lead">Donec ullamcorper nulla non metus auctor fringilla. Vestibulum id ligula porta felis euismod semper. Praesent commodo cursus magna, vel scelerisque nisl consectetur. Fusce dapibus, tellus ac cursus commodo.</p>
           </div>
           <div class="col-md-5">

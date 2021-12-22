@@ -1,52 +1,33 @@
 /* || General setup */
-  #time{
-    color:#007FFF;
-    font-size: 2rem;
-  }
-  
-  html, body {
-    margin: 0;
-    padding: 0;
-  }
-  
-  html {
-    font-size: 10px;
-    background-color: whitesmoke;
-  }
-  
-  body{
-    text-align: center;
-  }
-  /* || typography */
-  
-  h1{
-    font-family: 'Sonsie One', cursive;
-    color: #2a2a2a;
-    font-size: 3rem;
-    text-align: center;
-    color: white;
-    text-shadow: 2px 2px 10px black;
-  }
-  
-  /* || header layout */
- 
-  
-  input {
-    font-size: 1.6rem;
-    height: 32px;
-  }
-  
-  input[type="search"] {
-    flex: 3;
-  }
-  
-  input[type="submit"] {
-    flex: 1;
-    margin-left: 1rem;
-    background: #333;
-    border: 0;
-    color: white;
-  }
-  
-  /* || main layout */
-  
+#time{
+  color:#007FFF;
+  font-size: 1.5rem;
+}
+
+html {
+  background-color: whitesmoke;
+}
+
+*{
+  text-align: center;
+}
+/* || typography */
+
+h1{
+  font-family: 'Sonsie One', cursive;
+  color: #2a2a2a;
+  font-size: 2rem;
+  color: white;
+  text-shadow: 2px 2px 10px black;
+}
+
+/* || header layout */
+
+input[type="button"] {
+  font-size: 1.2em;
+  height: 35px;
+  margin: 0 auto;
+  display: block;
+}
+
+/* || main layout */
