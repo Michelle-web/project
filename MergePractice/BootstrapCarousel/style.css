@@ -1,13 +1,11 @@
 /* || General setup */
   #time{
     color:#007FFF;
-    font-size: 1.5rem;
+    font-size: 1.4rem;
   }
   
   #photo{
-    margin:0 auto;
     display:block;
-    height:50px
   }
 
   body {
@@ -21,10 +19,9 @@
   
   h1{
     font-family: 'Sonsie One', cursive;
-    color: #2a2a2a;
-    font-size: 2rem;
+    font-size: 1.6rem;
     color: #007FFF;
-    text-shadow: 2px 2px 10px black;
+    text-shadow: 1px 1px 5px rgba(7, 4, 4, 0.726);
   }
   
   /* || header layout */
