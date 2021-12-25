@@ -6,6 +6,7 @@
   
   #photo{
     display:block;
+    width: auto;
   }
 
   body {
