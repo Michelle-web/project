@@ -1,4 +1,8 @@
 $(function () {
+    var birthday = new Array('',
+        '',
+        '');
+        var birth = new Array("", "pic/bir.jpg", "pic/winnie.jpg");
     var merry = new Array('願耶誕佳節的好事和幸福都是你的 耶誕快樂!',
         '你知道Bill Gates在聖誕許的願望是什麼嗎？是聖誕老人從窗戶進入屋子，而不是從煙囪!',
         '你怎麼才起床呀 快睜大眼睛 昨夜聖誕老人爬上你的床 在你的枕頭下藏了一個很特別的禮物喔');
@@ -26,6 +30,20 @@ $(function () {
             }
             $("h1").text(merry[randomChildNumber])
             document.getElementById("photo").innerHTML = "<img src='" + xmas[randomChildNumber] + "' width=600 height=400>";
+        }
+        else if(time.month==2&&time.date==4){
+            var numberOfListItem = $(birthday).length;
+            if(time.hour>12)numberOfListItem--;
+            var randomChildNumber = Math.floor(Math.random() * numberOfListItem);
+            var text = document.getElementById("text");
+            while (birthday[randomChildNumber] == text.innerText) {
+                randomChildNumber = Math.floor(Math.random() * numberOfListItem)
+            }
+            $("h1").text(birthday[randomChildNumber])
+            document.getElementById("photo").innerHTML = "<img src='" + birth[randomChildNumber] + "' width=600 height=400>";
+        }
+        else if(time.month==2&&time.date==14){
+
         }
         else if(time.hour<12){
             var numberOfListItem = $(morning).length;
