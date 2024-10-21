@@ -1,0 +1,315 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset = "utf-8">
+		<title>運動規劃暨卡路里計算</title>
+		<style>@import url(finalReport.css);</style>
+		<script src="//code.jquery.com/jquery-2.1.4.min.js"></script>
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.7.2/Chart.min.js"></script>
+		<script>
+			var gridNum = 0; var hourSum = 0; var totHr = 0; var totCal = 0;
+			var br = document.createElement("br");
+			var setP = ['普通方案','輕量減肥','一般減肥','激烈減肥'];
+			var setSpan = ['1800大卡/週','2400大卡/週','2800大卡/週','3200大卡/週'];
+			var description = []; description.length = 10;
+			var excStr = ['跑步','排球','棒球','網球','游泳','羽毛球','跳繩','跳舞','瑜珈','騎自行車'];
+			var excTxt = ['(約15大卡/kg*hr)','(約5.1大卡/kg*hr)','(約4.7大卡/kg*hr)','(約6.2大卡/kg*hr)','(約8大卡/kg*hr)',
+				'(約5.1大卡/kg*hr)','(約13大卡/kg*hr)','(約5.1大卡/kg*hr)','(4.3大卡/kg*hr)','(約3大卡/kg*hr)'];
+			var excID = ["run","volley","base","tennis","swim","badminton","rope","dance","yoga","bike"];
+			var excCal = [15,5.1,4.7,6.2,8,5.1,13,5.1,4.3,3];
+			var weekCal = [0,1800,2400,2800,3200];
+			var showCal = document.createElement("div"); showCal.id = "showCal";//顯示還差多少卡路里
+			var mode = 0; var weight = 0;
+			
+			function modifyInfo() {
+				//alert( "pro" );
+				$("#height").attr("disabled",false);
+				$("#weight").attr("disabled",false);
+				$("#sex1").attr("disabled",false);
+				$("#sex2").attr("disabled",false);
+				var submitInfo = document.createElement("input");
+				submitInfo.id = "submitInfo"; submitInfo.type = "submit"; submitInfo.value = "確認";
+				var cancelInfo = document.createElement("input");
+				cancelInfo.id = "cancelInfo"; cancelInfo.type = "reset"; cancelInfo.value = "取消";
+				document.querySelector("#info").appendChild(submitInfo);
+				document.querySelector("#info").appendChild(cancelInfo);
+				document.getElementById("suggest").innerHTML = "";
+				document.getElementById("choosePlan").innerHTML = "";
+				document.getElementById("excercisePlan").innerHTML = "";
+				document.getElementById("formExc").innerHTML = "";
+			}
+			function printSuggest() {
+				var height = $("#height").val();
+				weight = $("#weight").val();
+				if (height<=0 || weight<=0) { alert("請輸入正確的身高體重！"); return;}
+				var bmi = weight/((height/100)*(height/100));
+				bmi = Math.round(bmi*100)/100;
+				var suggest = "<p><strong>您的BMI約為&ensp;"+bmi+"</strong></p>";
+				var text = "";
+				if (bmi<18.5) {text = "您的BMI數值過輕。";}
+				else if (bmi<24) {text = "您的BMI數值正常。";}
+				else if (bmi<27) {text = "您的BMI數值過重。";}
+				else {text = "您的BMI數值已屬於肥胖範圍，建議您注意飲食、並注意自己的體脂肪數值。";}
+				text += "<br>依照喜好填寫喜歡的運動跟預估花費時間吧!";
+				document.getElementById("suggest").innerHTML = suggest+"<p>"+text+"</p>";
+				var submitInfo = document.querySelector("#submitInfo");
+				var cancelInfo = document.querySelector("#cancelInfo");
+				document.querySelector("#info").removeChild(submitInfo);
+				document.querySelector("#info").removeChild(cancelInfo);
+				setChoosePlan();
+				$("#height").attr("disabled",true);
+				$("#weight").attr("disabled",true);
+				$("#sex1").attr("disabled",true);
+				$("#sex2").attr("disabled",true);
+			}
+			
+			function setChoosePlan() { //選擇運動方案
+				//alert( "pro" );
+				var q_chooseplan = document.createElement("p"); q_chooseplan.id = "q_chooseplan";
+				q_chooseplan.innerHTML = "<strong>請選擇您的運動方案</strong>";
+				document.querySelector("#choosePlan").appendChild(q_chooseplan);
+				document.querySelector("#choosePlan").style = "height: 130px;";
+				for (var i=1; i<=4; i++) {
+					var planButton = document.createElement("button");
+					planButton.setAttribute("class","way");
+					planButton.id = "set"+i;
+					planButton.type = "button";
+					document.querySelector("#choosePlan").appendChild(planButton);
+					document.getElementById(planButton.id).innerHTML = '<p class="p2">'+setP[i-1]+'</p><span>'+setSpan[i-1]+'</span>';
+				}
+				$("#set1").bind("click",function(){ removeSets(1); calScreen(1); generateForm(1); });
+				$("#set2").bind("click",function(){ removeSets(2); calScreen(2); generateForm(2); });
+				$("#set3").bind("click",function(){ removeSets(3); calScreen(3); generateForm(3); });
+				$("#set4").bind("click",function(){ removeSets(4); calScreen(4); generateForm(4); });
+				var resetInfo = document.createElement("button");
+				resetInfo.id = "resetInfo"; resetInfo.type = "button"; resetInfo.innerHTML = "重設個人資訊";
+				document.querySelector("#excercisePlan").appendChild(resetInfo);
+				$("#resetInfo").bind("click",modifyInfo);;
+			}
+			
+			function removeSets(n) { //刪除未選取的運動方案
+				//alert( "pro" );
+				$("#set"+n).unbind();
+				var delSetId; 
+				var delChild;
+				for (var i=1; i<=4; i++) {
+					if (i!=n) {
+						delSetId = "#set"+i;
+						delChild = document.querySelector(delSetId);
+						document.querySelector("#choosePlan").removeChild(delChild);
+					}
+				}
+				mode = n;
+			}
+			
+			function calScreen(n) {
+				showCal.innerHTML = "";
+				totCal = Math.round(10*totCal)/10;
+				if (totCal < weekCal[n]) { showCal.style = "background:#FFB5B5;"; }
+				else { showCal.style = "background:LightCyan;"; }
+				document.querySelector("#choosePlan").appendChild(showCal);
+				var p = document.createElement("p"); p.innerHTML = "本週已規劃";
+				document.querySelector("#showCal").appendChild(p);
+				var calSpan = document.createElement("span"); calSpan.innerHTML = totCal+" kcal";
+				document.querySelector("#showCal").appendChild(calSpan);
+			}
+			
+			function generateForm(n) {
+				document.querySelector("#rightBox").appendChild(formExc);
+				var comfirm_btn = document.createElement("button");
+				comfirm_btn.id = "cfb"; comfirm_btn.type = "submit"; comfirm_btn.innerHTML = "送出運動項目";
+				document.querySelector("#formExc").appendChild(comfirm_btn);
+				addGrid();
+			}
+			
+			function addGrid() {
+				var excBlock = document.createElement("div");
+				excBlock.classList.add("exc"); excBlock.id = "box"+gridNum;
+				document.querySelector("#formExc").appendChild(excBlock);
+				var excP = document.createElement("p"); excP.id = "excp"+gridNum;
+				excP.innerHTML = '<span class="p2">運動項目:&ensp;</span>';
+				document.querySelector("#box"+gridNum).appendChild(excP);
+				var excSelect = document.createElement("select"); excSelect.id = "s"+gridNum; //選取運動
+				document.querySelector("#excp"+gridNum).appendChild(excSelect);
+				var option_0 = document.createElement("option");
+				option_0.innerHTML = "【請選擇運動項目】"; option_0.value = -1;
+				document.querySelector("#s"+gridNum).appendChild(option_0);
+				for (var i=0; i<10; i++) {
+					var option = document.createElement("option");
+					option.innerHTML = excStr[i]+excTxt[i]; option.value = i;
+					document.querySelector("#s"+gridNum).appendChild(option);
+				}
+				var hrlab = document.createElement("label"); hrlab.id = "lab_hr"+gridNum;
+				hrlab.innerHTML = "總時長:&ensp;";
+				document.querySelector("#box"+gridNum).appendChild(hrlab);
+				var sel_hr = document.createElement("select"); sel_hr.id = "hr"+gridNum; //選取時長
+				sel_hr.style = "width:50px";
+				document.querySelector("#lab_hr"+gridNum).appendChild(sel_hr);
+				for (var i=0; i<15; i++) {
+					var opt_hr = document.createElement("option");
+					opt_hr.innerHTML = i; opt_hr.value = i;
+					document.querySelector("#hr"+gridNum).appendChild(opt_hr);
+					var opt_hr = document.createElement("option");
+					opt_hr.innerHTML = i+".5"; opt_hr.value = i+".5";
+					document.querySelector("#hr"+gridNum).appendChild(opt_hr);
+				}
+				var unit_hr = document.createElement("span"); unit_hr.innerHTML = "&ensp;小時&ensp;&ensp;&ensp;&ensp;";
+				document.querySelector("#box"+gridNum).appendChild(unit_hr);
+				var lab_tag = document.createElement("span");
+				lab_tag.innerHTML = "新增備註:&ensp;"; lab_tag.id = "labtag"+gridNum;
+				document.querySelector("#box"+gridNum).appendChild(lab_tag);
+				var tag = document.createElement("input"); tag.id = "tag"+gridNum; tag.type = "text";
+				document.querySelector("#box"+gridNum).appendChild(tag);
+				var comf = document.createElement("button"); comf.id = "comf";
+				comf.type = "button"; comf.innerHTML = "確認";
+				document.querySelector("#box"+gridNum).appendChild(comf);
+				$("#comf").bind("click",function(){
+					if (setValue()) {
+						var delcfm = document.querySelector("#comf");
+						document.querySelector("#box"+gridNum).removeChild(delcfm);
+						calScreen(mode);
+						var newgrid = document.createElement("button"); newgrid.id = "newgrid";
+						newgrid.type = "button"; newgrid.innerHTML = "新增項目";
+						document.querySelector("#box"+gridNum).appendChild(newgrid);
+						$("#newgrid").bind("click",function(){
+							var delnew = document.querySelector("#newgrid");
+							document.querySelector("#box"+gridNum).removeChild(delnew);
+							gridNum++; addGrid();
+						});
+					}
+				});		
+			}
+			
+			function setValue() {
+				totCal = 0;
+				totHr = 0;
+				if (totHr > 168) {}
+				for (var i=0; i<=gridNum; i++) {
+					var hour = $("#hr"+i).val(); hour = parseFloat(hour);
+					var exc_n = $("#s"+i).val(); exc_n = parseInt(exc_n);
+					if (exc_n == -1) {alert("請選擇第"+(gridNum+1)+"格之運動項目!"); return false;}
+					totCal += ( hour * excCal[exc_n] * weight);
+					totHr += hour;
+					if (totHr > 168) {alert("選取時數已達到每週上限"); return false;}
+				}
+				return true;
+			}
+			
+			function progress()
+			{
+				if (totCal<weekCal[mode]){
+					var check = confirm("所安排的總消耗熱量未符合方案，請問確定要結束動作嗎？");
+					if(!check){ return false; }
+				}
+				var excNo = []; var excName = []; var tags = []; var excHr = [];
+				for (var i=0; i<=gridNum; i++) {
+					excNo[excNo.length++] = $("#s"+i).val();
+					excNo[excNo.length-1] = parseInt(excNo[excNo.length-1]);
+					excName[excName.length++] = excStr[excNo[excNo.length-1]];
+					excHr[excHr.length++] = $("#hr"+i).val();
+					tags[tags.length++] = $("#tag"+i).val();
+				}
+				if (excNo[excNo.length-1] == -1) { excNo.length -= 1; excName.length -= 1; tags.length -= 1;}
+				if (excNo.length < 1) { return false; }
+				var height = $("#height").val(); height = parseInt(height);
+				var weight = $("#weight").val(); weight = parseInt(weight);
+				var sex = $("input[name=sex]:checked").val();
+				var set = mode;
+				var excJson = [];
+				for (var i=0; i<excNo.length; i++) {
+					var excercises = {};
+					var hour = parseFloat(excHr[i]);
+					var calories = hour * excCal[excNo[i]] * weight;
+					calories = Math.round(calories*10)/10;
+					excercises['excercise'] = excName[i];
+					excercises['hour'] = excHr[i];
+					excercises['calories'] = calories;
+					excercises['tag'] = tags[i];
+					excJson.push(excercises);
+				}
+				console.log(excJson);
+				$.ajax({
+					url: "finalReport.php",
+					data: {
+						height:height,weight:weight,sex:sex,set:set,
+						excJson:excJson
+					},
+					type: "POST",
+					dataType: "html",
+					success: function( output ) {
+						var formExc = document.querySelector("#formExc");
+						document.querySelector("#rightBox").removeChild(formExc);
+						$("#excercisePlan").html(output);
+						$("#q_chooseplan").html("<strong>您的運動安排</strong>");
+						drawChart(excJson);
+					},
+					error : function(){
+						alert( "Request failed." );
+					}
+				});
+			}
+			
+			function drawChart(excJs) {
+				var labs = []; var kcal = []; var time = [];
+				for (var i=0; i<excJs.length; i++) {
+					labs[labs.length++] = excJs[i]['excercise'];
+					kcal[kcal.length++] = excJs[i]['calories'];
+					time[time.length++] = excJs[i]['hour'];
+				}
+				var chartdiv = document.createElement("div"); chartdiv.id = "pic1";
+				document.querySelector("#rightBox").appendChild(chartdiv);
+				var cvs = document.createElement("canvas"); cvs.id="chart1";
+				document.querySelector("#pic1").appendChild(cvs);
+				var chart1 = new Chart($("#chart1"), {
+					type: 'bar',
+					data: {
+						labels: labs,
+						datasets: [{ label:'消耗熱量(kcal)', backgroundColor:'rgba(150,200,240,0.5)', data:kcal }]
+					},
+				});
+			}
+		</script>
+	</head>
+	<body>
+    <h1>運動規劃</h1>
+	<div id="leftBox">
+		<p class="p1">運動規劃</p>
+		<span>體態管理的方式有很多，有飲食調配、打針吃藥、心理治療、外科手術法及運動，其中以運動的方式瘦身是最有效的。
+		除此之外，運動也有許多好處：</span><br>
+		<ul>
+			<li>增強心肺功能、強化肌力、強健骨骼</li><li>增加肌肉的柔韌度，減低受傷機會</li>
+			<li>促進新陳代謝，消耗熱能，防止脂肪積聚</li><li>舒展身心，減輕精神壓力</li>
+			<li>增強身體的抵抗力</li><li>減少患上心臟病、高血壓、糖尿病等嚴重疾病的風險</li>
+		</ul>
+		<span>因此，我們做了這個網站，方便規劃自己一周內的運動量及花費時間。</span>
+		<ol>
+			<li>正常:週消耗熱量1800，適合無減肥需求的人</li>
+			<li>輕量減肥:週消耗熱量2400，適合想減肥，但不想有太大負擔的人</li>
+			<li>一般減肥:週消耗熱量2800，適合想減肥的人</li>
+			<li>激烈減肥:週消耗熱量3200，適合想快速看到瘦身效果的人</li>
+		</ol>
+	</div>
+	<div id="rightBox">
+		<form id="formInfo" method="post" onsubmit="javascript:printSuggest(); return false;">
+		<div id="info">
+			<p><label><strong>身高:&ensp;</strong>
+				<input id = "height" type = "number" style = "width:120px" required>&ensp;cm
+			</label></p>
+			<p><label><strong>體重:&ensp;</strong>
+				<input id = "weight" type = "number" style = "width:120px" required>&ensp;kg
+			</label></p>
+			<p><strong>生理性別:&ensp;</strong>
+				<label><input name = "sex" id = "sex1" type = "radio" value = "male" checked>男</label>&ensp;
+				<label><input name = "sex" id = "sex2" type = "radio" value = "female">女</label>
+			</p>
+			<input id="submitInfo" type="submit" value="確認">
+			<input id="cancelInfo" type="reset" value="取消">
+		</div>
+		</form>
+		<div id="suggest"></div>
+		<div id="choosePlan"></div>
+		<div id="excercisePlan"></div>
+		<form method = "post" id = "formExc" onsubmit = "javascript: progress(); return false;"></form>
+	</div>
+	</body>
+</html>
