@@ -1,7 +1,6 @@
 import java.awt.*;
 import java.awt.event.*;
 import javax.swing.*;
-import javax.swing.UIManager;
 public class EscapeGame extends JFrame implements ActionListener{
 	private static JLabel lb1;
 	Frame frame;
@@ -13,7 +12,7 @@ public class EscapeGame extends JFrame implements ActionListener{
 	public EscapeGame() {
 		frame = new Frame("Escape Game");
 		frame.setLayout(new FlowLayout());
-		frame.setSize(300,300);  // ³]©wµøµ¡¤Ø¤o
+		frame.setSize(300,300);  // è¨­å®šè¦–çª—å°ºå¯¸
 		frame.setLocation(400,200);
 		frame.setBackground(Color.BLACK);
 		note = new MenuItem("note");
@@ -38,11 +37,11 @@ public class EscapeGame extends JFrame implements ActionListener{
 			f2.setSize(250, 150);
 			f2.setVisible(true);
 			f2.setLocation(700, 300);
-			lb1 = new JLabel("<html>§A´`µÛ·L®zªº¥ú½u§ä¨ì¤F¤@­Ó¤õ§â¡A<br/>¤W­±¨èµÛ¤T­Ó¼Æ¦r<br/>255,167,79</html>");
+			lb1 = new JLabel("<html>ä½ å¾ªè‘—å¾®å¼±çš„å…‰ç·šæ‰¾åˆ°äº†ä¸€å€‹ç«æŠŠï¼Œ<br/>ä¸Šé¢åˆ»è‘—ä¸‰å€‹æ•¸å­—<br/>255,167,79</html>");
 			lb1.setForeground(Color.WHITE);
 			f2.add(lb1, BorderLayout.CENTER);
 			Button ok=new Button("CLOSE");
-			ok.setBounds(300, 300, 50, 50);//¥ª¶Z¡A¤W¶Z¡A¼e¡Aªø
+			ok.setBounds(300, 300, 50, 50);//å·¦è·ï¼Œä¸Šè·ï¼Œå¯¬ï¼Œé•·
 			ok.addActionListener(new ActionListener() {
 				@Override
 				public void actionPerformed(ActionEvent e) {
@@ -61,11 +60,11 @@ public class EscapeGame extends JFrame implements ActionListener{
 			f3.setSize(250, 150);
 			f3.setVisible(true);
 			f3.setLocation(700, 300);
-			lb1 = new JLabel("<html>§Aµo²{¤F¤@­Ó²°¤l¡A</html>");
+			lb1 = new JLabel("<html>ä½ ç™¼ç¾äº†ä¸€å€‹ç›’å­ï¼Œ</html>");
 			lb1.setForeground(Color.WHITE);
 			f3.add(lb1, BorderLayout.CENTER);
 			Button ok=new Button("CLOSE");
-			ok.setBounds(300, 300, 50, 50);//¥ª¶Z¡A¤W¶Z¡A¼e¡Aªø
+			ok.setBounds(300, 300, 50, 50);//å·¦è·ï¼Œä¸Šè·ï¼Œå¯¬ï¼Œé•·
 			ok.addActionListener(new ActionListener() {
 				@Override
 				public void actionPerformed(ActionEvent e) {
@@ -82,11 +81,11 @@ public class EscapeGame extends JFrame implements ActionListener{
 			f3.setSize(250, 150);
 			f3.setVisible(true);
 			f3.setLocation(700, 300);
-			lb1 = new JLabel("<html>³o­Ó²°¤l¤W¦³­Ó±K½XÂê<br>½Ğ¸Ñ¶}¥¦</html>");
+			lb1 = new JLabel("<html>é€™å€‹ç›’å­ä¸Šæœ‰å€‹å¯†ç¢¼é–<br>è«‹è§£é–‹å®ƒ</html>");
 			lb1.setForeground(Color.WHITE);
 			f3.add(lb1, BorderLayout.CENTER);
 			Button ok=new Button("CLOSE");
-			ok.setBounds(300, 300, 50, 50);//¥ª¶Z¡A¤W¶Z¡A¼e¡Aªø
+			ok.setBounds(300, 300, 50, 50);//å·¦è·ï¼Œä¸Šè·ï¼Œå¯¬ï¼Œé•·
 			ok.addActionListener(new ActionListener() {
 				@Override
 				public void actionPerformed(ActionEvent e) {
@@ -102,12 +101,12 @@ public class EscapeGame extends JFrame implements ActionListener{
 		f.setTitle("Escape Game");
 
 		Button start=new Button("start");
-		start.setBounds(100, 70, 100, 30);	//¥ª¶Z¡A¤W¶Z¡A¼e¡Aªø
+		start.setBounds(100, 70, 100, 30);	//å·¦è·ï¼Œä¸Šè·ï¼Œå¯¬ï¼Œé•·
 		start.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e){
 				String str;
-				str="§A²{¦b³Q§x¤@­Ó¶Â·tªºµøµ¡¤º¡A\n½Ğ®Ú¾Ú´£¥Ü§ä¨ì½u¯Á¯}Ãö¡C\n\n";
+				str="ä½ ç¾åœ¨è¢«å›°ä¸€å€‹é»‘æš—çš„è¦–çª—å…§ï¼Œ\nè«‹æ ¹æ“šæç¤ºæ‰¾åˆ°ç·šç´¢ç ´é—œã€‚\n\n";
 				UIManager UI=new UIManager();
 				UI.put("OptionPane.background", Color.black);
 				UI.put("Panel.background", Color.black);
@@ -116,7 +115,7 @@ public class EscapeGame extends JFrame implements ActionListener{
 				f.dispose();
 				new EscapeGame();
 				String str2;
-				str2="½ĞÂI¿ï'menu'¬d¬İ\n\n";
+				str2="è«‹é»é¸'menu'æŸ¥çœ‹\n\n";
 				JOptionPane.showMessageDialog(null,str2,"How to play", JOptionPane.PLAIN_MESSAGE);
 			}
 		});
@@ -126,7 +125,7 @@ public class EscapeGame extends JFrame implements ActionListener{
 			@Override
 			public void actionPerformed(ActionEvent e){
 				String str;
-				str="½Ğ®Ú¾Ú«ü¥Ü¶i¦æ¾Ş§@";
+				str="è«‹æ ¹æ“šæŒ‡ç¤ºé€²è¡Œæ“ä½œ";
 				UIManager UI=new UIManager();
 				UI.put("OptionPane.background", Color.black);
 				UI.put("Panel.background", Color.black);
@@ -151,7 +150,7 @@ public class EscapeGame extends JFrame implements ActionListener{
 		f.setVisible(true);
 		f.setLocation(400, 200);
 		f.setBackground(Color.BLACK);
-		f.addWindowListener(new WindowAdapter(){  //Åıµøµ¡¦³Ãö³¬§@¥Î
+		f.addWindowListener(new WindowAdapter(){  //è®“è¦–çª—æœ‰é—œé–‰ä½œç”¨
 		public void windowClosing (WindowEvent e){System.exit(0);}});
 	}
 }

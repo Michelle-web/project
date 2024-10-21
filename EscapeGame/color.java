@@ -65,7 +65,7 @@ public class color extends JFrame implements AdjustmentListener{
 
 		if(r==255&&g==167&&b==79){
 			String str;
-			str="§AÂI¿U¤F¤õ§â¡A\n¦b®à¤Wµo²{¤F¤@±i¯È";
+			str="ä½ é»ç‡ƒäº†ç«æŠŠï¼Œ\nåœ¨æ¡Œä¸Šç™¼ç¾äº†ä¸€å¼µç´™";
 			UIManager UI=new UIManager();
 			UI.put("OptionPane.background",new Color(255,167,79));
 			UI.put("Panel.background",new Color(255,167,79));

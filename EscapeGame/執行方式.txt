@@ -1,0 +1,3 @@
+cmd
+javac -encoding UTF-8 EscapeGame.java
+java EscapeGame

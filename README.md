@@ -1,8 +1,8 @@
-https://michelle-web.github.io/project/portfolio-1/portfolio-1/\n
-https://michelle-web.github.io/project/christmas/christmas/
-https://michelle-web.github.io/project/MergePractice/BootstrapCarousel/index.html
-https://michelle-web.github.io/project/webfinal/finalReport.html
-cd C:\project
-git add .
-git commit -m "update xxxx"
-git push -f
+https://michelle-web.github.io/project/portfolio-1/portfolio-1/ <br>
+https://michelle-web.github.io/project/christmas/christmas/ <br>
+https://michelle-web.github.io/project/MergePractice/BootstrapCarousel/index <br>
+https://michelle-web.github.io/project/webfinal/finalReport <br>
+cd C:\project <br>
+git add . <br>
+git commit -m "update xxxx" <br>
+git push -f <br>

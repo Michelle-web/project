@@ -22,7 +22,7 @@ public class GuessNum extends JFrame {
 		guess.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				r = (int)(Math.random()*9999)+1;	//²£¥Í¶Ã¼Æ
+				r = (int)(Math.random()*9999)+1;	//ç”¢ç”Ÿäº‚æ•¸
 				String str;
 				str="r="+r;
 				JOptionPane.showMessageDialog(null,str,"How to play", JOptionPane.PLAIN_MESSAGE);
@@ -80,7 +80,7 @@ public class GuessNum extends JFrame {
 						if(A==4){
 							//System.out.print("win");
 							lb2.setText("Win");
-							String str="®¥³ß§A¸Ñ¶}¤F±K½X¡A\n§A°k¥X¤F³o¸Ì";
+							String str="æ­å–œä½ è§£é–‹äº†å¯†ç¢¼ï¼Œ\nä½ é€ƒå‡ºäº†é€™è£¡";
 							Object[] buttons = {"exit"};
 							int res = JOptionPane.showOptionDialog(null,
 										str,"Congratulations!",
