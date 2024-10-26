@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html>
+   <head>
+      <meta charset = "utf-8">
+      <title>購物網站</title>
+	  <link rel = "stylesheet" type = "text/css" href = "shopping website.css">
+	  <style type = "text/css">
+         .special { color: burlywood; }
+      </style>
+
+   </head>
+   <body>
+   <h1>使用者購物資訊</h1>
+      <form method = "post" action = "http://localhost/s1091425.php">
+         <input type = "hidden" name = "recipient" value = "deitel@deitel.com">
+         <input type = "hidden" name = "subject"  value = "Feedback Form">
+         <input type = "hidden" name = "redirect" value = "main.html">
+         <p><label>姓名:
+               <input name = "name" type = "text" size = "25" required />
+            </label></p>
+         <p><label>電話:
+            <input name = "tel" type="tel" size = "25" placeholder = "####-###-###" 
+			pattern="\d{4}-\d{3}-\d{3}" required /> ####-###-###
+         </label></p>
+         <p><label>電子信箱:
+            <input name = "email" type = "email"  size = "30" required />
+         </label></p>
+		 <p><label>密碼:
+            <input name = "password" type = "password"  size = "25" required />
+         </label></p>
+		 <p><label>地址:
+            <input name = "address" type = "text"  size = "35" required />
+         </label></p>
+<p>
+   <label>性別:</label>
+   <label>男性
+      <input name = "gender" type = "radio" value = "男性"></label>
+   <label>女性
+      <input name = "gender" type = "radio" value = "女性"></label>
+   <label>其他
+      <input name = "gender" type = "radio" value = "其他"></label>
+</p>
+<p style = "font-size: 25pt;"><b>商品</b></p>
+		<p>
+        <img src = "01-227.jpg" width = "318" height = "204"
+            alt = "pancake">
+		<img src = "01.jpg" width = "318" height = "204"
+            alt = "pancake">
+			<br><label class = "special">mini起司禮盒 NT$480(10入)
+			&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+			&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+			&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</label>
+			<label class = "special">法式香頌禮盒 NT$540</label>
+			</p>
+			<p>
+		<img src = "01-236.jpg" width = "318" height = "204"
+            alt = "pancake">
+		<img src = "1.jpg" width = "318" height = "204"
+            alt = "pancake">
+			<br><label class = "special">迷你蒙布朗 NT$350(10入)&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+			&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+			&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</label>
+			<label class = "special">法式巧克力 NT$330(5吋)</label>
+			</p>
+			<p>
+		<img src = "3.jpg" width = "318" height = "204"
+            alt = "pancake">
+		<img src = "1024x683.jpg" width = "318" height = "204"
+            alt = "pancake">
+			<br><label class = "special">法式珍藏禮盒 NT$520(10入)&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+			&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+			&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</label>
+			<label class = "special">巧克力山丘 NT$990(6吋)</label>
+			</p>
+			<p>
+		<img src = "088.jpg" width = "318" height = "204"
+            alt = "pancake">
+		<img src = "1974.jpg" width = "318" height = "204"
+            alt = "pancake">
+			<br><label class = "special">黑糖美莓 NT$990(6吋)&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+			&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+			&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+			&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</label>
+			<label class = "special">1974烤起司蛋糕 NT$380(6吋)</label>
+			</p>
+			<p>
+		<img src = "261.jpg" width = "318" height = "204"
+            alt = "pancake">
+		<img src = "1051.jpg" width = "318" height = "204"
+            alt = "pancake">
+			<br><label class = "special">水果圓舞曲 NT$990(6吋)&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+			&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+			&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+			&nbsp;&nbsp;&nbsp;</label>
+			<label class = "special">交心 NT$1080(6吋)</label>
+			</p>
+<p>
+   <strong>欲購商品:</strong><br>
+   <label>mini起司禮盒
+      <input name = "product[]" type = "checkbox" value = "480"></label>
+   <label>法國香頌禮盒
+      <input name = "product[]" type = "checkbox" value = "540"></label>
+   <label>迷你蒙布朗
+      <input name = "product[]" type = "checkbox" value = "350"></label>
+   <label>法式巧克力
+      <input name = "product[]" type = "checkbox" value = "330"></label>
+   <label>法式珍藏禮盒
+      <input name = "product[]" type = "checkbox" value = "520"></label>
+	     <label>巧克力山丘
+      <input name = "product[]" type = "checkbox" value = "990"></label>
+	     <label>黑糖美莓
+      <input name = "product[]" type = "checkbox" value = "990"></label>
+	     <label>1974烤起司蛋糕
+      <input name = "product[]" type = "checkbox" value = "380"></label>
+	     <label>水果圓舞曲
+      <input name = "product[]" type = "checkbox" value = "990"></label>
+	     <label>交心
+      <input name = "product[]" type = "checkbox" value = "1080"></label>
+</p>
+
+         <p>
+            <input type = "submit" value = "Submit">
+            <input type = "reset" value = "Clear">
+         </p>
+      </form>
+   </body>
+</html>
